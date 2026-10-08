@@ -6555,7 +6555,8 @@ body.b-velo-aperto{ overflow:hidden; }
     /* Bilancio Facile (8/10/2026, decisione di Mauro): il confronto e' SOLO fra i prospetti finali, il suo accanto a
        quello corretto. Si ridisegnano SEMPRE dallo stato del foglio e dalla soluzione in archivio, non dalle fotografie. */
     var statoAl = f.nonSvolta ? null : statoDaHtml(f.dashboardAlunno);
-    var stSol = CED.statoSoluzione(soluzioneDi(f), f.id);
+    var idEs = f.id || f.testoId;   // la correzione dei compiti arriva con testoId (mostraSoluzioneCompiti)
+    var stSol = CED.statoSoluzione(soluzioneDi({ id:idEs }), idEs);
     var chi = (VC.mode === 'docente' || VC.mode === 'valuta') ? (VC.cognome || VC.nome || '') : '';
     var nomeDoc = (VC.ct === 1) ? 'Conto economico' : 'Stato patrimoniale';
     var etichetta = chi ? (nomeDoc + ' di ' + chi) : ('Il tuo ' + nomeDoc.toLowerCase());
@@ -8080,7 +8081,7 @@ body.b-velo-aperto{ overflow:hidden; }
      il lavoro, telefono e cloud). Mai sulla schermata del consegnato, mai durante una consegna, mai al docente.
      Il ricarico e' un F5: in classe si torna sul foglio, nei compiti alla lista. Al massimo una volta ogni
      10 minuti, cosi' un sito che risponde a meta' non la fa ricaricare in continuazione. */
-  var VERSIONE_APP = '20261008-01';
+  var VERSIONE_APP = '20261008-02';
   (function(){
     var ultimo = 0, inCorso = false;
     function visibile(id){ var el = byId(id); return !!(el && el.style.display !== 'none'); }
